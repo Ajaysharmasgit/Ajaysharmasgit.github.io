@@ -1,0 +1,10 @@
+body {
+  background: rgb(149, 242, 149);
+  background-image: url(https://i.pinimg.com/736x/52/16/2f/52162ffbe8acddc78c744ee8ed4b2377.jpg);
+  background-size: cover;
+}
+
+li {
+  font-family: serif;
+  font-display: flex;
+}
