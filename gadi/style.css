@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #9492f4;
+  font-family: "Manrope", sans-serif;
+  background-image: url(https://images.unsplash.com/photo-1484136540910-d66bb475348d?q=80&w=2753&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+}
+
+h2 {
+  margin: 2rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: gray;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(230, 148, 148, 0.1);
+  color: rgb(246, 227, 53);
+}
+
+header div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+header form {
+  width: 50%;
+}
+
+.search_result {
+  display: block;
+  height: auto;
+  padding: 20px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+label {
+  display: inline-block;
+  width: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.form_group {
+  margin: 1rem 0;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.625rem;
+  border: 1px solid grey;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+}
+
+button {
+  font-family: inherit;
+  background-color: #035a7c;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  border: none;
+  margin: 1rem 0 1rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #22b9e7;
+}
+
+button.delete {
+  background-color: transparent;
+  color: #22b9e7;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  margin: 0;
+}
+
+button.delete:hover {
+  color: #02485e;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1;
+  margin: 1rem 0.5rem 1rem 1rem;
+}
+
+.output {
+  flex: 2;
+  margin: 1rem 1rem 1rem 0.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  word-break: break-all;
+}
+
+th {
+  font-weight: bold;
+  background-color: #4ea9cc;
+  text-transform: uppercase;
+  color: rgb(246, 227, 53);
+}
+
+tr:nth-child(even) {
+  background-color: #ff5f5f;
+}
+
+#message {
+  margin-top: 1rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  visibility: hidden;
+  transition: visibility 0.3s ease;
+}
+
+#message.success {
+  background-color: #4caf50;
+  color: white;
+  visibility: visible;
+  font-family: serif;
+}
+
+#message.error {
+  background-color: #f44336;
+  color: white;
+  visibility: visible;
+  font-family: serif;
+}
+
+@media (max-width: 768px) {
+  label {
+    width: 100%;
+  }
+
+  input,
+  button {
+    width: 100%;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+}

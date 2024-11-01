@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(5, 110, 108);
+  color: #333;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.container {
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+header {
+  background-image: url("https://c02.purpledshub.com/uploads/sites/41/2009/09/GettyImages-884671854-4946bb3.jpg");
+  height: auto;
+  width: auto;
+  position: sticky;
+  top: 0;
+  background-color: transparent;
+  transition: background-color 0.3s;
+  z-index: 1000;
+  align-items: center;
+}
+
+header.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.menu-toggle {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+section h1 {
+  color: white;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+}
+ul.show {
+  display: block;
+}
+
+li {
+  display: inline-block;
+  font-size: 18px;
+}
+
+li a {
+  margin: 25px;
+  color: whitesmoke;
+  text-decoration: none;
+  display: block;
+}
+
+li a:hover {
+  color: cyan;
+}
+
+.banner {
+  color: white;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.banner h1 {
+  margin-bottom: 30px;
+}
+main p {
+  background: white;
+  margin: 10px;
+  padding: 5px;
+  font-size: 30px;
+}
+
+#about {
+  display: flex;
+  background: rgb(255, 255, 255);
+  align-items: center;
+}
+#about img {
+  height: 400px;
+  width: 30%;
+  margin-left: 20px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.projects {
+  display: flex;
+  gap: 50px;
+  padding: 20px;
+  margin: 15px;
+}
+
+.image {
+  flex: 1 1 300px;
+  max-width: 300px;
+  border: 2px solid #ccc;
+  padding: 30px;
+  margin: 20px 80px 20px 80px;
+  text-align: center;
+  background-color: #fcfcfc;
+  display: inline-block;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  display: inline-block;
+  background-color: black;
+}
+
+.shabd {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgb(70, 99, 25);
+}
+
+.image-box {
+  flex: 1 1 300px;
+  max-width: 300px;
+  border: 2px solid #f24848;
+  padding: 30px;
+  margin: 20px 80px 20px 80px;
+  text-align: center;
+  background-color: #fcfcfc;
+  display: inline-block;
+}
+
+.image-box img {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  display: inline-block;
+  background-color: black;
+}
+
+.caption {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgb(70, 99, 25);
+}
+
+#schl img {
+  max-width: 25%;
+  margin-left: 20px;
+  border-radius: 20px;
+}
+#schl {
+  display: flex;
+  color: darkgreen;
+}
+h2 {
+  text-align: center;
+  padding: 15px;
+  text-decoration: underline;
+  color: black;
+}
+
+footer {
+  background: rgb(147, 87, 87);
+  text-decoration: solid;
+  padding: 100px;
+}
+
+form {
+  padding: 5px;
+  justify-content: space-between;
+  text-align: center;
+}
+.form-wrap {
+  text-align: center;
+  background: rgb(237, 201, 109);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10spx;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-size: 20px;
+  color: #474747;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 30%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #8f8f8f;
+  border-radius: 5px;
+}
+
+button {
+  background: coral;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  width: 30%;
+}
+
+.label {
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  ul {
+    display: none;
+    flex-direction: column;
+  }
+}
+
+.progress-bar {
+  width: 90%;
+  background: #e0e0e0;
+  border-radius: 5px;
+}
+
+.progress {
+  height: 10px;
+  background: #08c92b;
+  border-radius: 5px;
+}
+
+footer button {
+  padding: 10px 15px;
+  background-color: #76c7c0;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .project-card {
+    flex-direction: column;
+  }
+}
