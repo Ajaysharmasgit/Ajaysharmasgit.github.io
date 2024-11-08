@@ -1,16 +1,19 @@
-//Pancakes in different parts
+
+
+// Pancakes in different parts
 const priceDisplayDiv = document.querySelector('.price-display span');
 let orders = [];
 
-
+// Function to calculate total price
 function calculateTotal() {
-    // Took help from Andrei with this part
     const pancakeType = document.getElementById('pancakeType');
+
+    // Getting the checkboxes when the function is selected
     const toppingCheckboxes = document.querySelectorAll('.customization-section:nth-of-type(2) input[type="checkbox"]');
     const extraCheckboxes = document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]');
+
     const deliveryMethod = document.querySelector('input[name="delivery"]:checked'); // Delivery method selection
 
-    // I put all the values zero to avoid my own confusion
     let basePrice = parseInt(pancakeType.value);
     let toppingsPrice = 0;
     let extrasPrice = 0;
@@ -31,33 +34,40 @@ function calculateTotal() {
         }
     });
 
-    // Only work if it ask for delivery.
+    // Delivery price (only if 'Delivery' is selected)
     if (deliveryMethod && deliveryMethod.value === 'Delivery') {
         deliveryPrice = 5;
     }
 
-    // Adding the price of toppings and extra
+    // Add prices for toppings, extras, and delivery
     totalPrice += toppingsPrice + extrasPrice + deliveryPrice;
 
+    // Update the price display
     showPrice(totalPrice);
 }
 
 // Function to update price display
 function showPrice(totalPrice) {
-    // Update total price display
     priceDisplayDiv.innerText = `$${totalPrice}`;
 }
 
-// Function to display current order
-function displayOrder() {//this part half is from AI
+// Function to display the current order
+function displayOrder() {
     const customerName = document.getElementById('customerName').value;
+    const pancakeType = document.getElementById('pancakeType');
     const pancakeTypeSelected = pancakeType.options[pancakeType.selectedIndex].text;
-    const selectedToppings = Array.from(document.querySelectorAll('.customization-section:nth-of-type(2) input[type="checkbox"]:checked')).map(t => t.nextSibling.textContent.trim()).join(', ');
-    const selectedExtras = Array.from(document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]:checked')).map(e => e.nextSibling.textContent.trim()).join(', ');
-    const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
-    const totalPrice = priceDisplayDiv.innerText;
 
-    // Creating order with object
+    // Get selected toppings and extras dynamically
+    const selectedToppings = Array.from(document.querySelectorAll('.customization-section:nth-of-type(2) input[type="checkbox"]:checked'))
+        .map(t => t.nextSibling.textContent.trim()).join(', ');
+
+    const selectedExtras = Array.from(document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]:checked'))
+        .map(e => e.nextSibling.textContent.trim()).join(', ');
+
+    const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
+    const totalPrice = priceDisplayDiv.innerText; // This is the string with "$" sign
+
+    // Creating order object
     const order = {
         customerName,
         pancakeType: pancakeTypeSelected,
@@ -67,10 +77,10 @@ function displayOrder() {//this part half is from AI
         totalPrice
     };
 
-    // Adding the order info
+    // Adding the order to the orders array
     orders.push(order);
 
-    // This I took from AI sorry couldn't figure out.
+    // Displaying the order summary
     const orderSummaryDiv = document.getElementById('orderSummary');
     orderSummaryDiv.innerHTML = `
         <h3>Order Summary</h3>
@@ -83,24 +93,26 @@ function displayOrder() {//this part half is from AI
     `;
 }
 
-// Event listeners for the pancakes with extras and toppings
+// Event listeners for updating price
 document.getElementById('pancakeType').addEventListener('change', calculateTotal);
-toppingCheckboxes.forEach((toppings) => {
-    toppings.addEventListener('change', calculateTotal);
-});
-extraCheckboxes.forEach((extras) => {
-    extras.addEventListener('change', calculateTotal);
+
+// Get the dynamically added checkboxes and bind event listeners
+document.querySelectorAll('.customization-section:nth-of-type(2) input[type="checkbox"]').forEach(topping => {
+    topping.addEventListener('change', calculateTotal);
 });
 
-// Add ingevent listener for delivery method
+document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]').forEach(extra => {
+    extra.addEventListener('change', calculateTotal);
+});
+
+// Event listener for delivery method
 const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
 deliveryOptions.forEach(option => {
     option.addEventListener('change', calculateTotal);
 });
 
-// Add event listener for "Check Order" button
+// Event listener for "Check Order" button
 document.getElementById('checkOrder').addEventListener('click', displayOrder);
 
-// Showing the total calculation calculation
+// Initial total calculation
 calculateTotal();
-
