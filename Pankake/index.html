@@ -9,42 +9,56 @@
     <div class="container">
       <div class="image-container">
         <img src="pancake.jpeg" alt="Delicious pancakes" />
-        <div class="price-banner"><span id="totalPrice">$5</span></div>
+        <!-- <div class="price-banner">
+          <span id="totalPriceDisplay">€5</span>
+        </div> -->
       </div>
+
       <div class="form-container">
         <h2>Customize Your Pancake</h2>
+        <!-- Customer Name -->
         <div class="customization-section">
-          <label for="type">Choose your pancake type:</label>
+          <label for="customerName">Enter your name:</label>
+          <input type="text" id="customerName" placeholder="Enter your name" />
+        </div>
+
+        <!-- Pancake Type -->
+        <div class="customization-section">
+          <label for="pancakeType">Choose your pancake type:</label>
           <select id="pancakeType">
-            <option value="5">Classic - $5</option>
-            <option value="6">Chocolate - $6</option>
-            <option value="7">Blueberry - $7</option>
+            <option value="5">Classic - €5</option>
+            <option value="6">Chocolate - €6</option>
+            <option value="7">Blueberry - €7</option>
           </select>
         </div>
+
+        <!-- Toppings -->
         <div class="customization-section">
-          <p>Select your toppings ($1 each):</p>
+          <p>Select your toppings (€1 each):</p>
           <label>
             <input type="checkbox" class="topping" value="1" /> Nuts<br />
           </label>
           <label>
-            <input type="checkbox" id="bananas" class="topping" value="1" />
-            Bananas<br />
+            <input type="checkbox" class="topping" value="1" /> Bananas<br />
           </label>
           <label>
-            <input type="checkbox" id="syrup" class="topping" value="1" />
-            Syrup<br />
+            <input type="checkbox" class="topping" value="1" /> Syrup<br />
           </label>
         </div>
+
+        <!-- Extras -->
         <div class="customization-section">
           <p>Add extras:</p>
           <label>
-            <input type="checkbox" id="whippedCream" value="2" /> Whipped Cream
-            - $2<br />
+            <input type="checkbox" class="extra" value="2" /> Whipped Cream -
+            €2<br />
           </label>
           <label>
-            <input type="checkbox" id="iceCream" value="3" /> Ice Cream - $3<br />
+            <input type="checkbox" class="extra" value="3" /> Ice Cream - €3<br />
           </label>
         </div>
+
+        <!-- Delivery Method -->
         <div class="customization-section">
           <p>Choose your delivery method:</p>
           <label>
@@ -55,16 +69,21 @@
           ><br />
           <label>
             <input type="radio" name="delivery" value="Delivery" /> Delivery
-            (+$5) </label
+            (+€5) </label
           ><br />
         </div>
+
+        <!-- Total Price -->
         <div class="price-display">
-          <h3>Total Price: <span id="totalPrice">$5</span></h3>
+          <h3>Total Price: <span id="totalPrice">€5</span></h3>
+          <button id="seeOrder">See Order</button>
         </div>
-        <button id="checkOrder">See Order</button>
+
+        <!-- Order Summary -->
         <div id="orderSummary"></div>
       </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>

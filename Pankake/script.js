@@ -1,18 +1,12 @@
-
-
-// Pancakes in different parts
-const priceDisplayDiv = document.querySelector('.price-display span');
+const priceDisplayDiv = document.querySelector('#totalPrice');
 let orders = [];
 
 // Function to calculate total price
 function calculateTotal() {
     const pancakeType = document.getElementById('pancakeType');
-
-    // Getting the checkboxes when the function is selected
-    const toppingCheckboxes = document.querySelectorAll('.customization-section:nth-of-type(2) input[type="checkbox"]');
-    const extraCheckboxes = document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]');
-
-    const deliveryMethod = document.querySelector('input[name="delivery"]:checked'); // Delivery method selection
+    const toppingCheckboxes = document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]');
+    const extraCheckboxes = document.querySelectorAll('.customization-section:nth-of-type(4) input[type="checkbox"]');
+    const deliveryMethod = document.querySelector('input[name="delivery"]:checked');
 
     let basePrice = parseInt(pancakeType.value);
     let toppingsPrice = 0;
@@ -20,35 +14,30 @@ function calculateTotal() {
     let deliveryPrice = 0;
     let totalPrice = basePrice;
 
-    // Calculate toppings
     toppingCheckboxes.forEach((topping) => {
         if (topping.checked) {
             toppingsPrice += parseInt(topping.value);
         }
     });
 
-    // Calculate extras
     extraCheckboxes.forEach((extra) => {
         if (extra.checked) {
             extrasPrice += parseInt(extra.value);
         }
     });
 
-    // Delivery price (only if 'Delivery' is selected)
     if (deliveryMethod && deliveryMethod.value === 'Delivery') {
         deliveryPrice = 5;
     }
 
-    // Add prices for toppings, extras, and delivery
     totalPrice += toppingsPrice + extrasPrice + deliveryPrice;
 
-    // Update the price display
     showPrice(totalPrice);
 }
 
-// Function to update price display
+// Function to update price 
 function showPrice(totalPrice) {
-    priceDisplayDiv.innerText = `$${totalPrice}`;
+    priceDisplayDiv.innerText = `€${totalPrice}`;
 }
 
 // Function to display the current order
@@ -57,17 +46,17 @@ function displayOrder() {
     const pancakeType = document.getElementById('pancakeType');
     const pancakeTypeSelected = pancakeType.options[pancakeType.selectedIndex].text;
 
-    // Get selected toppings and extras dynamically
-    const selectedToppings = Array.from(document.querySelectorAll('.customization-section:nth-of-type(2) input[type="checkbox"]:checked'))
-        .map(t => t.nextSibling.textContent.trim()).join(', ');
+    const selectedToppings = Array.from(document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]:checked'))
+        .map(t => t.parentElement.textContent.trim()).join(', ');
 
-    const selectedExtras = Array.from(document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]:checked'))
-        .map(e => e.nextSibling.textContent.trim()).join(', ');
+    const selectedExtras = Array.from(document.querySelectorAll('.customization-section:nth-of-type(4) input[type="checkbox"]:checked'))
+        .map(e => e.parentElement.textContent.trim()).join(', ');
 
-    const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
-    const totalPrice = priceDisplayDiv.innerText; // This is the string with "$" sign
+    const deliveryMethod = document.querySelector('input[name="delivery"]:checked') ? document.querySelector('input[name="delivery"]:checked').value : 'None';
 
-    // Creating order object
+    const totalPrice = parseFloat(priceDisplayDiv.innerText.replace('€', ''));
+
+    // Creating the order object
     const order = {
         customerName,
         pancakeType: pancakeTypeSelected,
@@ -77,10 +66,10 @@ function displayOrder() {
         totalPrice
     };
 
-    // Adding the order to the orders array
+    // Pushing orders
     orders.push(order);
 
-    // Displaying the order summary
+    // order display
     const orderSummaryDiv = document.getElementById('orderSummary');
     orderSummaryDiv.innerHTML = `
         <h3>Order Summary</h3>
@@ -89,30 +78,29 @@ function displayOrder() {
         <p><strong>Toppings:</strong> ${selectedToppings || 'None'}</p>
         <p><strong>Extras:</strong> ${selectedExtras || 'None'}</p>
         <p><strong>Delivery Method:</strong> ${deliveryMethod}</p>
-        <p><strong>Total Price:</strong> ${totalPrice}</p>
+        <p><strong>Total Price:</strong> €${totalPrice.toFixed(2)}</p>
     `;
 }
 
-// Event listeners for updating price
+
 document.getElementById('pancakeType').addEventListener('change', calculateTotal);
 
-// Get the dynamically added checkboxes and bind event listeners
-document.querySelectorAll('.customization-section:nth-of-type(2) input[type="checkbox"]').forEach(topping => {
+document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]').forEach(topping => {
     topping.addEventListener('change', calculateTotal);
 });
 
-document.querySelectorAll('.customization-section:nth-of-type(3) input[type="checkbox"]').forEach(extra => {
+document.querySelectorAll('.customization-section:nth-of-type(4) input[type="checkbox"]').forEach(extra => {
     extra.addEventListener('change', calculateTotal);
 });
 
-// Event listener for delivery method
-const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
-deliveryOptions.forEach(option => {
+document.querySelectorAll('input[name="delivery"]').forEach(option => {
     option.addEventListener('change', calculateTotal);
 });
 
-// Event listener for "Check Order" button
-document.getElementById('checkOrder').addEventListener('click', displayOrder);
 
-// Initial total calculation
+document.getElementById('seeOrder').addEventListener('click', displayOrder);
+
+
+
+// total calculation
 calculateTotal();

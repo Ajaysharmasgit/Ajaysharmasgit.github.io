@@ -27,17 +27,6 @@ body {
   object-fit: cover;
 }
 
-.price-banner {
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 2rem;
-  animation: bounce 1s infinite; /*taken this from chatgpt*/
-}
-
 @keyframes bounce {
   /*taken this from chatgpt*/
 
